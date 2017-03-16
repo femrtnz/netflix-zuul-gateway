@@ -1,0 +1,30 @@
+info:
+  component: Zuul Server
+
+security:
+  sessions: NEVER
+
+zuul:
+  add-proxy-headers: true
+  sensitive-headers:
+  ignoredServices: '*'
+  routes:
+    app1:
+      path: /app1/**
+      url: http://${app1}/app1/
+    app2:
+      path: /app2/**
+      url: http://${app2}/app2/
+
+server:
+  port: 80
+  use-forward-headers: true
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
+
+ribbon:
+  eureka:
+    enabled: false
